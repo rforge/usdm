@@ -1,3 +1,0 @@
-importFrom("raster", as.data.frame)
-exportClasses(speciesLISA, VIF)
-exportMethods(exclude, lisa, speciesLisa, vif, vifcor, vifstep)

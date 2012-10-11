@@ -1,8 +1,8 @@
-\name{plot}
+\name{plot.speciesLISA}
 
 \docType{methods}
 
-\alias{plot}
+\alias{plot.speciesLISA}
 \alias{plot,speciesLISA,missing-method}
 \alias{plot,speciesLISA,SpatialPolygons-method}
 \alias{plot,speciesLISA,SpatialPolygonsDataFrame-method}

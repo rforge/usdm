@@ -62,7 +62,7 @@ Naimi, B., Hamm, N.A.S., Groen, T.A., Skidmore, A.K., and Toxopeus, A.G.
 \examples{
 file <- system.file("external/spain.grd", package="usdm")
 
-r <- brick(file) # reading a RasterBrick object including 23 raster layers in Spain
+r <- brick(file) # reading a RasterBrick object including 10 raster layers in Spain
 
 r 
 

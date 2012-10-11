@@ -42,7 +42,7 @@ Before using this function, you should execute one of \code{vifstep} or \code{vi
 \examples{
 file <- system.file("external/spain.grd", package="usdm")
 
-r <- brick(file) # reading a RasterBrick object including 23 raster layers in Spain
+r <- brick(file) # reading a RasterBrick object including 10 raster layers in Spain
 
 r 
 

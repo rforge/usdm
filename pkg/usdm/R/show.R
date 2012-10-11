@@ -30,3 +30,14 @@ setMethod ('show' , 'speciesLISA',
              cat('min, mean, max of aggregated LISA : ' , min(object@LISA),',' ,mean(object@LISA),',',max(object@LISA), '\n')
            }
 )
+
+setMethod ('show' , 'RasterVariogram', 
+           function(object) {
+             cat('class               :' , class(object), '\n')
+             cat('Lag size            :' , object@lag, '\n')
+             cat('Number of lags      : ' , object@nlags, '\n')
+             cat ('\n')
+             cat('------ Variogram data ------','\n')
+             print(object@variogram)
+           }
+)

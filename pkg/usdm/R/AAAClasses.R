@@ -19,3 +19,10 @@ setClass("VIF",
                         corMatrix="matrix",
                         results="data.frame")
 )
+
+setClass("RasterVariogram",
+         representation(lag="numeric",
+                        nlags="numeric",
+                        variogramCloud="matrix",
+                        variogram="data.frame")
+)

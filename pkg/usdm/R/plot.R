@@ -1,6 +1,6 @@
 # Author: Babak Naimi, naimi.b@gmail.com
 # Date :  Sep. 2012
-# Version 1.0
+# Version 1.1
 # Licence GPL v3
 
 .level <- function(levels) {
@@ -19,7 +19,7 @@
   levels
 }
 
-plot.specisLISA <- function(x, y, cex=2,levels, xyLegend, xlab="X Coordinates",ylab="Y Coordinates", main, ...) {
+.plot.specisLISA <- function(x, y, cex=2,levels, xyLegend, xlab="X Coordinates",ylab="Y Coordinates", main, ...) {
   op <- par(mar = par()$mar)
   
   par(mar=par()$mar + c(0,2,0,2))
@@ -74,6 +74,7 @@ plot.specisLISA <- function(x, y, cex=2,levels, xyLegend, xlab="X Coordinates",y
 
 
 
+
 if (!isGeneric("plot")) {
   setGeneric("plot", function(x,y,...)
     standardGeneric("plot"))
@@ -88,7 +89,7 @@ setMethod("plot", signature(x='speciesLISA',y="SpatialPolygons"),
             if (missing(main)) main <- "Impact of positional uncertainty based on LISA"
             levels <- .level(levels)            
             
-            plot.specisLISA(x=x,y=y,levels=levels,xyLegend=xyLegend,xlab=xlab,ylab=ylab, main=main, ...)
+            .plot.specisLISA(x=x,y=y,levels=levels,xyLegend=xyLegend,xlab=xlab,ylab=ylab, main=main, ...)
           }
 )
 
@@ -100,7 +101,7 @@ setMethod("plot", signature(x='speciesLISA',y="SpatialPolygonsDataFrame"),
             if (missing(main)) main <- "Impact of positional uncertainty based on LISA"
             levels <- .level(levels)            
             
-            plot.specisLISA(x=x,y=y,levels=levels,xyLegend=xyLegend,xlab=xlab,ylab=ylab, main=main, ...)
+            .plot.specisLISA(x=x,y=y,levels=levels,xyLegend=xyLegend,xlab=xlab,ylab=ylab, main=main, ...)
           }
 )
 
@@ -112,6 +113,34 @@ setMethod("plot", signature(x='speciesLISA',y="missing"),
             if (missing(main)) main <- "Impact of positional uncertainty based on LISA"
             levels <- .level(levels)            
             
-            plot.specisLISA(x=x,levels=levels,xyLegend=xyLegend,xlab=xlab,ylab=ylab, main=main, ...)
+            .plot.specisLISA(x=x,levels=levels,xyLegend=xyLegend,xlab=xlab,ylab=ylab, main=main, ...)
           }
 )
+
+setMethod("plot", signature(x='RasterVariogram'), 
+          function(x,xlim,ylim,xlab,ylab,pch,col,main,cloud=FALSE,box=FALSE,...) {
+            if (missing(xlim)) xlim <- c(0,x@lag*x@nlags)
+            if (missing(ylim)) {
+              if (cloud | box) ylim <- c(0,quantile(x@variogramCloud,prob=0.99,na.rm=TRUE))
+              else ylim <- c(0,max(x@variogram$gamma,na.rm=TRUE))
+            }
+            if (missing(xlab)) xlab <- "Lag"
+            if (missing(ylab)) ylab <- "Semivariance"
+            if (missing(pch)) pch <- 16
+            if (missing(col)) {
+              if (box) col <- 0
+              else col <- 'blue'
+            }
+            if (missing(main)) {
+              if (cloud) main <- "Variogram Cloud"
+              else if (box) main <- "Box plot of variogram Cloud"
+              else main <- "Variogram"
+            }
+            if (cloud) {
+              plot(x@variogram$distance,x@variogramCloud[1,],xlim=xlim,ylim=ylim,xlab=xlab,ylab=ylab,main=main,pch=pch,col=col,...)
+              for (i in 2:x@nlags) points(x@variogram$distance,x@variogramCloud[i,],col=col,pch=pch,...)
+            } else if (box) boxplot(x@variogramCloud,names=x@variogram$distance,xlab=xlab,ylab=ylab,ylim=ylim,col=col,main=main,...)
+            else plot(x@variogram$distance,x@variogram$gamma,xlim=xlim,ylim=ylim,xlab=xlab,ylab=ylab,main=main,pch=pch,col=col,...)
+          }
+)
+

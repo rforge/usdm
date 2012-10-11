@@ -44,48 +44,48 @@ Getis, A. and Ord, J. K. 1996 Local spatial statistics: an overview. In P. Longl
 
 
 \examples{
-file <- system.file("external/predictors.grd", package="usdm")
+file <- system.file("external/spain.grd", package="usdm")
 
-r <- brick(file) # reading a RasterBrick object including 4 rasters in the Netherlands
+r <- brick(file) # reading a RasterBrick object including 10 rasters in Spain
 
-r 
+r
 
 plot(r) # visualize the raster layers
 
 plot(r[[1]]) # visualize the first raster layer
 
-r.I <- lisa(x=r[[1]],d1=0,d2=15000,statistic="I") # calculates local Moran's I for the
+r.I <- lisa(x=r[[1]],d1=0,d2=30000,statistic="I") # calculates local Moran's I for the
 # first raster layer in r
 
 plot(r.I)
 
-# entering r instead of r[[1]], calculates the indicator for # each raster layer in r:
-# r.I <- lisa(x=r,d1=0,d2=15000,statistic="I")
+# entering r instead of r[[1]], calculates the indicator for each raster layer in r:
+# r.I <- lisa(x=r,d1=0,d2=30000,statistic="I")
 # plot(r.I)
 
-r.c <- lisa(x=r[[1]],d1=0,d2=15000,statistic="c") # calculates local Geary's c for the
+r.c <- lisa(x=r[[1]],d1=0,d2=30000,statistic="c") # calculates local Geary's c for the
 # first raster layer in r
 
 plot(r.c)
 
-r.g <- lisa(x=r[[1]],d1=0,d2=15000,statistic="G") # calculates G statistic for the
+r.g <- lisa(x=r[[1]],d1=0,d2=30000,statistic="G") # calculates G statistic for the
 # first raster layer in r
 
 plot(r.g)
 
-r.g2 <- lisa(x=r[[1]],d1=0,d2=15000,statistic="G*") # calculates G* statistic for the
+r.g2 <- lisa(x=r[[1]],d1=0,d2=30000,statistic="G*") # calculates G* statistic for the
 # first raster layer in r
 
 plot(r.g2)
 
-r.K1 <- lisa(x=r[[1]],d1=0,d2=15000,statistic="K1") # calculates K1 statistic for each # raster layer in r
+r.K1 <- lisa(x=r[[1]],d1=0,d2=30000,statistic="K1") # calculates K1 statistic for each # raster layer in r
 
 plot(r.K1)
 
-lisa(x=r,d1=0,d2=15000,cell=2000,statistic="I") # calculates local Moran's I at 
+lisa(x=r,d1=0,d2=30000,cell=2000,statistic="I") # calculates local Moran's I at 
 # cell number 2000 for each raster layer in r
 
-lisa(x=r,d1=0,d2=15000,cell=c(2000,2002,2003),statistic="c") # calculates local Moran's I
+lisa(x=r,d1=0,d2=30000,cell=c(2000,2002,2003),statistic="c") # calculates local Moran's I
 # at cell numbers of 2000,2002, and 2003 for each raster layer in r
 
 sp <- sampleRandom(r[[1]],20,sp=TRUE) # draw 20 random points from r, 
@@ -95,7 +95,7 @@ plot(r[[1]])
 
 points(sp)
 
-lisa(x=r,y=sp,d1=0,d2=15000,statistic="I") # calculates the local Moran's I at 
+lisa(x=r,y=sp,d1=0,d2=30000,statistic="I") # calculates the local Moran's I at 
 # point locations in sp for each raster layer in r
 }
 

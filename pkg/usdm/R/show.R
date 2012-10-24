@@ -1,6 +1,6 @@
 # Author: Babak Naimi, naimi.b@gmail.com
-# Date :  Sep. 2012
-# Version 1.0
+# Date :  Oct. 2012
+# Version 1.1
 # Licence GPL v3
 
 setMethod ('show' , 'VIF',
@@ -10,7 +10,8 @@ setMethod ('show' , 'VIF',
                cat (object@excluded,'\n')
              } else cat ('No variable from the',length(object@variables), 'input variables has collinearity problem.','\n')
              cat('\n')
-             if (length(object@excluded) > 0) cat('excluding the collinear variables:','\n')
+             if (length(object@excluded) > 0) cat('After excluding the collinear variables, the linear correlation coefficients ranges between:','\n')
+             else cat('The linear correlation coefficients ranges between:','\n')
              mx <- .minCor(object@corMatrix)
              cat ('min correlation (',mx[1],'~',mx[2],'): ',object@corMatrix[mx[1],mx[2]], '\n')
              mx <- .maxCor(object@corMatrix)

@@ -50,10 +50,11 @@ plot(r) # visualize the raster layers
 
 
 files.path <- system.file("external", package="usdm") # path to location of example files
+require(rgdal)
 sp <- readOGR(dsn=files.path,layer="species_nl") # reading species data (shapefile)
 
 # alternatively, to read species data you can use:
-#library(maptools)
+#require(maptools)
 # sp.file <- system.file("external/species_nl.shp", package="usdm")
 # sp <- readShapePoints(sp.file)
 

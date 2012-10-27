@@ -58,7 +58,7 @@ r
 
 plot(r) # visualize the raster layers
 
-library(rgdal)
+require(rgdal)
 dsn <- system.file("external", package="usdm")  # specifying the location where species data is available as a shapefile
 sp <- readOGR(dsn=dsn,layer="species_nl") # reading the Spatial shape file including species data
 

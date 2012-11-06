@@ -48,23 +48,24 @@ r
 
 plot(r) # visualize the raster layers
 
+require(maptools)
+sp.file <- system.file("external/species_nl.shp", package="usdm")
+sp <- readShapePoints(sp.file)
 
-files.path <- system.file("external", package="usdm") # path to location of example files
-require(rgdal)
-sp <- readOGR(dsn=files.path,layer="species_nl") # reading species data (shapefile)
 
 # alternatively, to read species data you can use:
-#require(maptools)
-# sp.file <- system.file("external/species_nl.shp", package="usdm")
-# sp <- readShapePoints(sp.file)
+#files.path <- system.file("external", package="usdm") # path to location of example files
+#require(rgdal)
+#sp <- readOGR(dsn=files.path,layer="species_nl") # reading species data (shapefile)
+
 
 splisa <- speciesLisa(x=r,y=sp,uncertainty=15000,weights=c(0.22,0.2,0.38,0.2))
 
 splisa
 
 plot(splisa)
-
-bnd <- readOGR(dsn=files.path,layer="boundary") # reading the boundary map
+bnd.file <- system.file("external/boundary.shp", package="usdm")
+bnd <- readShapePoly(bnd.file) # reading the boundary map
 
 plot(splisa,bnd)
 

@@ -18,7 +18,7 @@ setMethod ('Variogram' ,signature(x='RasterLayer'),
            function (x,lag,cutoff,cells,size=100) {
              if (missing(cutoff)) cutoff<- sqrt((xmin(x)-xmax(x))^2+(ymin(x)-ymax(x))^2) / 3
              if (missing(lag)) lag <- res(x)[1]
-             else if (lag < res(x)[1]) lag <- res(ngbgrid)[1] 
+             else if (lag < res(x)[1]) lag <- res(x)[1] 
              if (cutoff < lag) stop("cutoff should be greater than lag size")
              nlag <- ceiling(cutoff / lag)
              re <- res(x)[1]

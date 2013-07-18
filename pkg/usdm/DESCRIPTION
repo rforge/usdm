@@ -1,8 +1,8 @@
 Package: usdm
 Type: Package
 Title: Uncertainty analysis for species distribution models
-Version: 1.1-10
-Date: 2013-07-17
+Version: 1.1-11
+Date: 2013-07-18
 Author: Babak Naimi
 Depends:methods, raster
 Suggests: rgdal (>= 0.6-28)

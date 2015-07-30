@@ -1,4 +1,5 @@
 import("methods")
-importFrom("raster", as.data.frame)
+importFrom("raster", as.data.frame,ncells,res,cellStats,raster,xmin,xmax,ymin,ymax,brick,cellFromXY,nlayers,addLayer)
+importFrom("sp", bbox,coordinates)
 exportClasses(speciesLISA, VIF)
 exportMethods(exclude, lisa, speciesLisa, vif, vifcor, vifstep,Variogram)

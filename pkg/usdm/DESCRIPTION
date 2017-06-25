@@ -1,7 +1,7 @@
 Package: usdm
 Type: Package
 Title: Uncertainty Analysis for Species Distribution Models
-Version: 1.1-17
+Version: 1.1-18
 Date: 2017-06-25
 Author: Babak Naimi
 Depends: methods, sp, raster

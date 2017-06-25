@@ -1,6 +1,7 @@
 # Author: Babak Naimi, naimi.b@gmail.com
 # Date :  March 2013
-# Version 1.1
+# Last update: June 2017
+# Version 1.2
 # Licence GPL v3
 
 .vif <- function(y) {
@@ -22,6 +23,7 @@
 }
 
 .maxCor <- function(k){
+  k <- abs(k)
   n <- nrow(k)
   for (i in 1:n) k[i:n,i] <- NA
   w <- which.max(k)
